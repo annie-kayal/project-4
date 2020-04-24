@@ -12,6 +12,7 @@ pyjwt = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
 pillow = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
