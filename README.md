@@ -7,6 +7,8 @@ by [Lucy Maitland](https://github.com/lucymait) and [Annie Kayal](https://github
 
 ## Overview
 
+this is a test
+
 Fitbook was my fourth project, with General Assembly, during the software engineering immersive course. Myself and Annie chose to work in a pair, to build a full-stack application within **one week**.
 
 After lots of planning, we decided to create a fitness class booking app, where users can:
