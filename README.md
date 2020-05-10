@@ -49,25 +49,38 @@ Check out the top fitness classes in your area, [here](https://fitbook-fitness.h
 
 ## Approach 
 
-When building our project; Django created a main project folder (for us) which contains all the project URLS and settings, including the database configuration. It also comes with a built-in CMS where the user can directly add, update and delete database records, and pre made authentication. 
+### Planning & Set Up 
 
-First, we had to create a superuser in order to view the admin user section. Next we created our app (fitness) which is part of the project and has its own set of URLS, models, views and serializers. We can link our app into the Django project by modifying some settings in the project folder.
+After deciding the idea of our project, we created an Entity Relationship Diagram to determine what relationships models had between them and what type of relationship these would be. This was incredibly important to decide early on in order to decifier how our database would be built. 
 
-### Planning
+At this stage, we also decided the fields each of our models have within them, as illustrated below:
 
-In the first stage, we created our Entity Relationship Diagram (as seen below). This illustrated the different relationships between each model, whether its a one to many or many to many relationship. It was important deciding the relationships at an early stage, so that our models and database wasn't affected. 
+<img src='https://i.imgur.com/9G9yg80.png'>
 
-<img src="./Images/Planning.png" width="600" height="400"/> <br/>
+
+Having successfully planned our project, we could move on creation. We must create a Django project which would include the two apps we decided to have. The project contains its own set of URLS which we would use to distinguish the API endpoints to retrieve any data from our apps. The project also contains settings where we configured the apps, middleware, databases, our custom made user model, and authentication to be included in our apps. 
+
+Django comes with a built-in CMS whereby an administrative user can directly add, update and delete database records.
+
+However, in order to access Django’s CMS, a superuser needed to be created aswell as our apps. For each app created, a URL, model, and views Python files would be made automatically. These apps were then need to be included into the project’s installed apps to track changes. 
+
+The last step needed in our setup was to configure our database to be PostgreSQL. By default, Django will use SQLite. To change this, we had to modify the database section in our project settings to use PostgreSQL by providing our database name and altering our engine to be PostgreSQL. 
+
 
 ## Models
 
-It was crucial creating our models at stage 1, to reduce having to drop your database and losing any crucial data.
+Having completed setting up the project, we could look forward to building our two apps. The first step was creating the models per app and ensuring these were correct to avoid continuously dropping and recreating the database. 
 
 ### 1. FITNESS
 
-For the PostgreSQL database, we created five tables: Instructor, Gym, Fitness Class, Borough & Booked Class.
+For our fitness app, a total of five tables were created in the database, as shown in our ERD above.
 
-- The Instructor table consisted of a name so we could identify the instructor for each fitness class.
+- Some models which were created simply to provide variety in our app i.e. Our Instructor table held a total of 10 instructors, which was used in the fitnessClass model as a OnetoOne relationship to indicate one instructor per class. A similar approach was also taken for our Gym model:
+
+<table>
+<tr>
+<th>
+
 ```js
 class Instructor(models.Model):
   name = models.CharField(max_length=100)
@@ -75,7 +88,17 @@ class Instructor(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
-- The Gym table also consisted of a name, but in addition, had a facilities field e.g parking, showers or lockers
+
+</th>
+<th>
+The Instructor table consisted of a name so we could identify the instructor for each fitness class.
+</th>
+</tr>
+
+<tr>
+<td>
+<pre>
+
 ```js
 class Gym(models.Model):
   name = models.CharField(max_length=500)
@@ -84,14 +107,21 @@ class Gym(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
-- The Fitness Class table was our main model. This consisted of a fitness class name, gym, activity_type, instructor, description, time_of_class and comments. 
 
-- A comments model was created at an early stage (as a bonus feature), however unfortunately we ran out of time and therefore didn't implement it. Although, now that it is in our models, it will make it much easier for the feature to be created in the future, as we already have the model in our backend.
+</pre>
+</td>
+<th>
+The Gym table also consisted of a name and a facilities field e.g parking, showers or lockers for users. 
+</th>
+</td>
+</tr>
+</table>
 
-- The FitnessClass model, had the following relationships: 
-1. A one-to-many relationship with gym, signifying many fitness classes to one gym,
-2. A one-to-many relationship with instructor, signifying many fitness classes to one instructor,
-3. A many-to-many relationship with comments, signifying there can be many comments to many fitness classes.
+Overall the fitness database had three main models which held relationships with other models. The fitnessClass, Borough and BookedClass models. 
+
+<table>
+<tr>
+<th>
 
 ```js
 class FitnessClass(models.Model):
@@ -106,7 +136,23 @@ class FitnessClass(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
-- The Borough table consisted of a name, image and fitnessclasses. The fitnessclass had a many-to-many relationship to Boroughs, showing that there are many fitness classes in many boroughs.
+
+</th>
+<th>
+The Fitness Class model consisted of a name, gym, activity_type, instructor, description, time_of_class and comments. 
+
+A comments model was created at the earlier stage of creating the models and to be implemented as a bonus feature for users to comment classes. However we unfortunately ran out of time before being able to integrate the feature in. Although, now that it is in our model, it will make it much easier to be created in the future.
+
+The model, had the following relationships: 
+1. A one-to-many relationship with gym model, signifying many fitness classes to one gym,
+2. A one-to-many relationship with instructor, signifying many fitness classes to one instructor,
+3. A many-to-many relationship with comments, signifying there can be many comments to many fitness classes.
+</th>
+</tr>
+
+<tr>
+<td>
+<pre>
 
 ```js
 class Borough(models.Model):
@@ -117,9 +163,17 @@ class Borough(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
-- Finally our BookedClass table consisted of a name, gym, activity_type, instructor, description, time_of_class, date booked and user. 
 
-- The bookedClass model has a one to many relationship with the user model, from the JWT Auth App. This shows that each user can have many booked classes. These booked classes will then be displayed in the users profile, in the front end.
+</pre>
+</td>
+<th>
+The Borough table consisted of a name, image and fitnessclasses. The fitnessclass had a many-to-many relationship to Boroughs, showing that there are many fitness classes in many boroughs.
+</th>
+</td>
+</tr>
+<tr>
+<td>
+<pre>
 
 ```js
 class BookedClass(models.Model):
@@ -135,6 +189,20 @@ class BookedClass(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
+
+</pre>
+</td>
+<th>
+Finally our BookedClass table consisted of a name, gym, activity_type, instructor, description, time_of_class, date booked and user. 
+
+The bookedClass model has a one to many relationship with the user model, from the JWT Auth App. This shows that each user can have many booked classes. These booked classes will then be displayed in the users profile, in the front end.
+</th>
+</td>
+</tr>
+</table>
+
+
+
 
 ### 1. JWT_AUTH
 
