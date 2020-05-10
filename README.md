@@ -658,7 +658,7 @@ This function runs in a similar way to the filtering on the Borough page. Howeve
 <img src="https://i.imgur.com/QEtsHbl.png" height="400"/>
 
 ### Profile Page
-<img src="https://i.imgur.com/QEtsHbl.png" width="225" height="400"/>
+<img src="https://i.imgur.com/Gr4mK6O.png" height="400"/>
 
 ## Potential Future Features
 
