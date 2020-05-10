@@ -119,9 +119,6 @@ The Gym table also consisted of a name and a facilities field e.g parking, showe
 
 Overall the fitness database had three main models which held relationships with other models. The fitnessClass, Borough and BookedClass models. 
 
-<table>
-<tr>
-<th>
 
 ```js
 class FitnessClass(models.Model):
@@ -137,8 +134,6 @@ class FitnessClass(models.Model):
     return f'{self.name}'
 ```
 
-</th>
-<th>
 The Fitness Class model consisted of a name, gym, activity_type, instructor, description, time_of_class and comments. 
 
 A comments model was created at the earlier stage of creating the models and to be implemented as a bonus feature for users to comment classes. However we unfortunately ran out of time before being able to integrate the feature in. Although, now that it is in our model, it will make it much easier to be created in the future.
@@ -147,12 +142,6 @@ The model, had the following relationships:
 1. A one-to-many relationship with gym model, signifying many fitness classes to one gym,
 2. A one-to-many relationship with instructor, signifying many fitness classes to one instructor,
 3. A many-to-many relationship with comments, signifying there can be many comments to many fitness classes.
-</th>
-</tr>
-
-<tr>
-<td>
-<pre>
 
 ```js
 class Borough(models.Model):
@@ -164,16 +153,8 @@ class Borough(models.Model):
     return f'{self.name}'
 ```
 
-</pre>
-</td>
-<th>
 The Borough table consisted of a name, image and fitnessclasses. The fitnessclass had a many-to-many relationship to Boroughs, showing that there are many fitness classes in many boroughs.
-</th>
-</td>
-</tr>
-<tr>
-<td>
-<pre>
+
 
 ```js
 class BookedClass(models.Model):
@@ -189,17 +170,10 @@ class BookedClass(models.Model):
   def __str__(self):
     return f'{self.name}'
 ```
-
-</pre>
-</td>
-<th>
 Finally our BookedClass table consisted of a name, gym, activity_type, instructor, description, time_of_class, date booked and user. 
 
 The bookedClass model has a one to many relationship with the user model, from the JWT Auth App. This shows that each user can have many booked classes. These booked classes will then be displayed in the users profile, in the front end.
-</th>
-</td>
-</tr>
-</table>
+
 
 
 
