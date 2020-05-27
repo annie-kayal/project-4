@@ -18,11 +18,11 @@ Check out the app [here](https://fitbook-project.herokuapp.com/#/).
 ## Brief
 
 - Choose to work solo or in a team
-- **Build a full-stack application** by making your own backend and your own front-end
+- **Build a full-stack application** by making a backend and front-end
 - **Use a Python Django API** using Django REST Framework to serve your data from a Postgres database
-- **Consume your API with a separate front-end** built with React
+- **Consume the API with a separate front-end** built with React
 - **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
-- **Be deployed online** so it's publicly accessible.
+- **Be deployed online** so it's publicly accessible
 
 ## Technologies Used
 
@@ -48,31 +48,31 @@ Check out the app [here](https://fitbook-project.herokuapp.com/#/).
 
 ### Planning & Set Up 
 
-After deciding the idea of our project, we created an Entity Relationship Diagram to determine what relationships models had between them and what type of relationship these would be. This was incredibly important stage to ensure how our database would be built. 
+After deciding the idea for the project, we created an Entity Relationship Diagram to determine what relationship models had between them and what type of relationships these would be. This was incredibly important stage to ensure how our database would be built. 
 
 At this stage, we also decided the fields each of our models have within them, as illustrated below:
 
 <img src='https://i.imgur.com/9G9yg80.png'>
 
 
-Having successfully planned our project, we could move on creation. Our first step would be to create a Django project which would include our two apps. The project contains its own set of URLS which we would use to distinguish the API endpoints to retrieve any data from our apps. The project also contains settings where we configured the apps, middleware, databases, our custom made user model, and authentication to be included in our apps. 
+Having planned our project, we could move on to begin creation. Our first step was to create a Django project containing our two apps. The project contains its own individual set of URLS which we would use to distinguish the API endpoints to retrieve any data in the frontend. The project has its own settings where we configured the apps, middleware, databases, our custom made user model, and authentications for the apps to use. 
 
-Django comes with a built-in CMS whereby an administrative user can directly add, update and delete database records. We also used Django REST framework to build the API as it has powerful functionality but also allows for customisation all the way down. 
+Django comes with an in-built CMS whereby an administrative user can directly add, update and delete database records. We used Django REST framework to build the API as it has powerful functionality but allows for customisation all the way down. 
 
-However, in order to access Django’s CMS, a superuser needed to be created aswell as our apps. For each app created, a URL, model, and views Python files would be made automatically. These apps were then need to be included into the project’s installed apps to track changes. 
+However, in order to access Django’s CMS, a superuser needed to be created aswell as our apps. For each app created, a URL, Model, and Views Python files are automatically created. These newly created apps needed to be included into the main project’s installed apps section to track changes. 
 
-The last step needed in our setup was to configure our database to be PostgreSQL. By default, Django will use SQLite. To change this, we had to modify the database section in our project settings to use PostgreSQL by providing our database name and altering our engine to be PostgreSQL. 
+The last step needed in our setup was to configure our database to be PostgreSQL. By default, Django will use SQLite. To change this, we had to modify the database section in the main project settings to use PostgreSQL by providing the database name and altering our engine to be PostgreSQL. 
 
 
 ## Models
 
-Having completed setting up the project, we could look forward to building our two apps. The first step was creating the models per app and ensuring these were correct to avoid continuously dropping and recreating the database. Once every model was created, they each also have be registered in the admin.py file in their own apps. 
+Having set up the project, we could look forward to building our two apps. The first step was creating models per app and ensuring these were correct to avoid continuously dropping and recreating the database. Once every model was created, they each also have be registered in the admin.py file for which app they were built in. 
 
 ### 1. FITNESS
 
 For our fitness app, a total of five tables were created in the database, as shown in our ERD above.
 
-- Some models which were created simply to provide variety in our app i.e. Our Instructor table held a total of 10 instructors, which was used in the fitnessClass model as a OnetoOne relationship to indicate one instructor per class. A similar approach was also taken for our Gym model:
+- Some models were created simply to provide variety in our app i.e. Our Instructor table held a total of 10 instructors, which we used in the fitnessClass model as a one-to-one relationship to indicate one instructor per class. A similar approach was also taken for our Gym model:
 
 <table>
 <tr>
@@ -114,7 +114,7 @@ The Gym table also consisted of a name and a facilities field e.g parking, showe
 </tr>
 </table>
 
-Overall the fitness database had three main models which held relationships with other models. The fitnessClass, Borough and BookedClass models. 
+The fitness app had three main models which held relationships with other models. The fitnessClass, Borough and BookedClass models. 
 
 1. <h4 style='text-decoration: underline'>Fitness Class Model: </h4>
 
@@ -134,11 +134,11 @@ Overall the fitness database had three main models which held relationships with
 
 - The Fitness Class model consisted of a name, gym, activity_type, instructor, description, time_of_class and comments. 
 
-- A comments model was created at the earlier stage of creating the models and to be implemented as a bonus feature for users to comment classes. However we unfortunately ran out of time before being able to integrate the feature in. Although, now that it is in our model, it will make it much easier to be created in the future.
+- A comments model was created at the earlier stage of creating the models and to be implemented as a bonus feature for users to comment on classes; however we unfortunately ran out of time before being able to integrate the feature in. Although, now that it is in our model, it will make it much easier to be created in the future.
 
 - The model, had the following relationships: 
-  1. A one-to-many relationship with gym model, signifying many fitness classes to one gym,
-  2. A one-to-many relationship with instructor, signifying many fitness classes to one instructor,
+  1. A one-to-many relationship with gym model, signifying many fitness classes to one gym;
+  2. A one-to-many relationship with instructor, signifying many fitness classes to one instructor;
   3. A many-to-many relationship with comments, signifying there can be many comments to many fitness classes.
 
 2. <h4 style='text-decoration: underline'>Borough Model: </h4>
@@ -153,7 +153,7 @@ Overall the fitness database had three main models which held relationships with
         return f'{self.name}'
     ```
 
-- The Borough table consisted of a name, image and fitnessclasses. The fitnessclass had a many-to-many relationship to Boroughs, showing that there are many fitness classes in many boroughs.
+- The Borough table consisted of a name, image and fitnessclasses. The fitnessclass had a many-to-many relationship to the FitnessClass model, to indicate there are many fitness classes in many boroughs.
 
 3. <h4 style='text-decoration: underline'>Booked Class Model: </h4>
 
@@ -173,11 +173,11 @@ Overall the fitness database had three main models which held relationships with
     ```
 - Finally our BookedClass table consisted of a name, gym, activity_type, instructor, description, time_of_class, date booked and user. 
 
-- The bookedClass model has a one to many relationship with our custom user model, from the JWT Auth App. This shows that each user can have many booked classes. These booked classes will then be displayed in the users profile, in the front end.
+- The bookedClass model has a one to many relationship with our custom user model, from the JWT Auth App. This shows that each user can have many booked classes. These booked classes can then be displayed in the users profile in the front-end.
 
 ### 2. JWT_AUTH
 
-As part of Django’s default authentication, a default user is already available for use. However, this default model has attributes which accepts only a small number of fields and only one of which is required as true. For this reason, we decided to extend the original model: 
+As part of Django’s default authentication, a user is already available for use. However, the model has attributes which accepts only a small number of fields and only one of which is required as true. For this reason, we chose to extend the original model: 
 
 1. 
       ```js
@@ -185,19 +185,19 @@ As part of Django’s default authentication, a default user is already availabl
         image = models.ImageField(upload_to='profile_image', blank=True)
         email = models.EmailField(unique=True, error_messages={'unique':"This email has already been registered."})
         ```
-- This customised model has two additional fields, the email and the image. Although email is already provided by Django’s default model, it is not required. We also specified unique as also being true, disabling users to register with the same username and prompting the error message shown. The image field allows our users to upload their own image to the database. We chose to allow this as not being required to allow users to decide if they wanted a photo of themselves.  
+- This customised model has two additional fields, the email and the image. Although email is already provided by Django’s default model, it is not required. We also specified unique as also being true. This disables users to register with the same email and prompts the error message shown. The image field allows our users to upload their own image to the database. We allowed users the choice to upload their own photo.
 
 
 
 ## Serializers
 
-Once our models were created, we needed to create serializers for all of them. This was necessary in order for Django to communicate with our PostgreSQL database. The purpose of the serializers is converting data. In the database, data is stored differently to how we want this to be rendered for our API endpoints and it is necessary to be able to display data that is clear to those who use the API. 
+Once the models were created, we needed to create serializers for all of them. This was necessary for Django to communicate with our PostgreSQL database. The purpose of the serializers is converting data. In the database, data is stored as encrypted files. In rendering our data, even from the backend view, these files can be unclear to read. It was necessary to display data that is clear to those who wished to use the API. 
 
-In our instance, we chose to display the data as JSON and if submitted to the database in JSON format, the serializer would convert this to be stored appropriately in the database and when retrieved from the database, the data would be deserialized and turned into JSON format. The serializers also validate before it is stored into the database.  
+In our instance, we chose to display the data in JSON format and if submitted to the database in JSON format, the serializer would convert this to be stored appropriately in the database and when retrieved from the database, the data would be deserialized and turned into JSON format. The serializers also validate before it is stored into the database to ensure data meets the criteria outlined.  
 
 ### 2. FITNESS
 
-- We created a serializer for each of our models in the fitness app. Although the ModelSerializer automatically generates the fields in the model we pass through, we decided to include them individually in case we change our models. 
+- We created a serializer for each of our models in the fitness app. Although the ModelSerializer method automatically generates the fields in the model we pass through, we decided to include them individually in case we change our models. 
 
 ```js
 class FitnessClassSerializer(serializers.ModelSerializer):
@@ -206,7 +206,7 @@ class FitnessClassSerializer(serializers.ModelSerializer):
     fields = ('id', 'name', 'gym', 'activity_type', 'instructor', 'time_of_class', 'description', 'comment')
 ```
 
-- Due to the default behaviour of ModelSerializer of displaying relationship keys with only the primary key, we used nested serializers to display all the information per relationship was displayed. This was done by specifically defining the fields as being their own serializers and then passing them through into the fields. This was needed specifically for fitnessClass to display the instructor, gym and comments and also the Borough to display the classes. 
+- Due to the default behaviour of ModelSerializer to display relationships with only the primary key, we used nested serializers to allow all information to be displayed per relationship. This was done by defining the fields as being their own serializers and then passing them through into the fields as shown below. This was needed specifically for fitnessClass model to display the instructor, gym and comments and also for the Borough in order to display the classes. 
 
 ```js
 class PopulateFitnessClassSerializer(serializers.ModelSerializer):
@@ -227,9 +227,9 @@ class PopulateBoroughSerializer(serializers.ModelSerializer):
 
 ### 2. JWT_AUTH
 
-Although we only had one model in our JWT_auth app, we decided to add another level of authentication for the serializer to run when data is submitted. This was a validation to check password authentication. 
+Although we only had one model in our JWT_auth app, we decided to add an additional level of authentication in the the serializer to run when data is submitted. This was a validation to check password authentication. 
 
-Although Django does come with its own set of requirements for passwords, our `validate` method creates an extra measure to check if the password and password confirmation field match and if any other error messages appear, to raise them. 
+Although Django does come with its own set of requirements for passwords, our `validate` method creates an extra measure to check if the password and password confirmation field match and if any other error messages appear, to raise them and return them. 
 
 
 ```js
@@ -265,17 +265,17 @@ class UserSerializer(serializers.ModelSerializer):
         }
 ```
 
-We also needed to specify the fitness field as being required as false. This is because the fitness field is not inputted into the custom user model and because this is the serializer is to be used in the registration endpoint, new users would not have any classes booked. 
+We also needed to specify the fitness field as being required as false. This is because the fitness field is not inputted into the custom user model upon registeration and would automatically raise the data as invalid.
 
 ## Views
 
-Now being able to store and access our data that is viewable, we were now able to look at how our API information would return our data. We implemented the Django REST framework to create the views to render our backend data and implement CRUD functionality. 
+Now being able to store and access data that is viewable, we were now able to look at how our API information would return our data. We implemented Django REST framework to create the views to render our backend data and enable CRUD functionality. 
 
 ### 1. FITNESS
 
 At this point, we had to decide what requests users could make. Due to the nature of the app, it was clear users would be able to make GET requests to all of the endpoints, but would be limited to which tables they would be able to delete or create with. For this reason, we only chose to use class-based views in our fitness app so we could determine the delete and create endpoints for the users. 
 
-One area we did need to implement in this app is permissions. In order to access most of the information on the app, they needed to be a registered user. Django REST framework already gives us access to some powerful permissions, which can be added any view by passing them as a list or tuple to a permission_classes property. However, we also created another custom permission setting. 
+One area we did need to implement in this app is permissions. In order to access most of the information on the app, they needed to be a registered user. Django REST framework already gives us access to some powerful permissions, which can be added to any view by passing them as a list or tuple to a permission_classes property. However, we also created another custom permission setting. 
 
 ```js
 class IsOwnerOrReadOnly(BasePermission):
@@ -287,7 +287,7 @@ class IsOwnerOrReadOnly(BasePermission):
 ```
 - `isOwnerOrReadOnly` overrides the `BasePermission`. What this does is allow users read-only access to the endpoint, however even if they are authenticated, full CRUD functionality is only available to a superuser through the admin panel. 
 
-- This permission was used only for the fitnessClass and fitnessClassDetailView endpoints as this would be only access for a superuser to add more classes to the database. However all users have a GET endpoint to view the classes. 
+- This permission was used only for the fitnessClass and fitnessClassDetailView endpoints as this would only b accessible for a superuser to add more classes to the database. However all users have a GET endpoint to view the classes. 
 
 ```js
 class AllFitnessClassView(APIView):
@@ -310,7 +310,7 @@ class FitnessClassDetailView(APIView):
 ```
 For the rest of the endpoints in the fitness app, we specified permissions as using Django REST frameworks `isAuthenticated`. This would mean they would need to be logged in as a user to even have read-only access. 
 
-- The BookedClass endpoint was the only endpoint created where authenticated users could POST and DELETE. This endpoint is what is used in the frontend for users to book their fitness classes, the POST request, or to DELETE a singular class if they could no longer attend. 
+- The BookedClass endpoint was the only endpoint created where authenticated users could POST and DELETE. This endpoint is used in the front-end for users to book their fitness classes using a POST request, or to DELETE a singular class if they could no longer attend. 
 
 ```js
 class BookedClassesView(APIView):
@@ -352,7 +352,7 @@ class BookedClassDetailView(APIView):
                 return Response({'message': 'Registration successful'})
             return Response(serializer.errors, status=422)
     ```
-    - For users wanting to register themselves into the database, this allowed every user a POST request. The data that is passed through this endpoint must be valid against the UserSerializer before being saved into the database and will return the errors if unsuccessful which are then displayed in the frontend. 
+    - For users wanting to register themselves into the database, this allowed every user a POST request. The data that is passed through this endpoint must be valid against the UserSerializer before being saved into the database and will return the errors if unsuccessful which are then displayed in the front-end. 
 
 2. <h4 style='text-decoration: underline'>Login View </h4>
 
@@ -372,7 +372,7 @@ class BookedClassDetailView(APIView):
             token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
             return Response({'token': token, 'message': f'Welcome back {user.username}!'})
     ```
-    - Once users have successfully registered, they will be able to login to have access to the views in the fitness app. However, this endpoint also decifiers if the user has already registered using the `get_user` function by checking if the email address requested is within the database. If this is passed, the POST request will also run the `check_password` function provided by Django’s default user authentication. If this is all passed, the user is given a JSONWebToken which is stored into the localStorage through the frontend and passes the `isAuthenticated` permission. 
+    - Once users have successfully registered, they will be able to login and have access to the views in the fitness app. However, this endpoint also decifiers if the user has already registered using the `get_user` function by checking if the email address requested is within the database. If this is passed, the POST request will also run the `check_password` function provided by Django’s default user authentication. If this is all passed, the user is given a JSONWebToken which is stored into the localStorage through the front-end and passes the `isAuthenticated` permission. 
 
 
 3. <h4 style='text-decoration: underline'> Profile View </h4>
@@ -386,7 +386,7 @@ class BookedClassDetailView(APIView):
         return Response(serialized_user.data)
     ```
 
-    - All registered users are given their own profile, where all their booked classes would be stored. This is the only endpoint whereby permissions have been enabled and has a single GET endpoint to get the user made the request. This utilises the PopulateUserSerialiser to pull through all the information per booked class.  
+    - All registered users are given their own profile, where all their booked classes would be stored. This is the only endpoint whereby permissions have been enabled and has a single GET endpoint to get the user made the request. This utilises the PopulateUserSerialiser to pull all the data through if any classes have been booked by the user.  
 
 ## URLS 
 
@@ -443,7 +443,7 @@ Once we were clear on how the user journey would be made, we quickly got started
 
 The nature of this app was to primarily be used on **mobile apps** as users would be likely to view class availability during their day. Because of this, the app was designed to be mobile first. We implemented using a CSS framework into our project in order to focus on the functionality of how the components would work.
 
-## Hompage 
+## Homepage 
 
 - The homepage was built with limited accessibility for users. In designing our backend, content would only be available to users who had created an account. The landing page therefore prompts users to either create an account or to login using buttons to redirect them to the appropriate page. 
  
@@ -539,7 +539,7 @@ The screenshots below are taken from the development stage to illustrate the ima
 
 ## Borough & Class Filtering
 
-Now that users have access to all the app functionality, they are able to browse through the Boroughs that are available on the app. We decided to implement 12 Boroughs as a whole to demonstrate how the page would look with multiple boroughs available and when the page scrolls, other components would not be affected and the design would stay intact. 
+Now that users have access to all the app functionality, they are able to browse through the Boroughs that are available on the app. We decided to implement 12 Boroughs as a whole to demonstrate how the page would look with multiple boroughs available and when the page scrolls; other components would not be affected and the design would stay intact. 
 
 A feature often seen on pages where multiple choices are available, such as our boroughs, a filtration is available for users to quickly find one of their choosing. We also decided to use this for enhanced user experience.  Our filtering technique finds any borough on their name. 
 
@@ -575,7 +575,7 @@ Achieving this required three pieces of state to be used:
 
   5. During this, the state of `query` and `filteredBoroughs` are reset. The `query` is set to be the input value and `filteredBoroughs` is set to be the variable where the filter method was applied. 
 
-We also applied a filter once a user selects a Borough they would like to book a class in. This filter allows the user to view classes by the class type i.e HIIT. 
+We also applied a filter once a user selects a Borough they would like to book a class in. This filter allows the user to view classes by the class type, i.e HIIT. 
 
 This filter took a slightly different approach and used options to filter through the classes available rather than by freely typing. 
 
@@ -663,15 +663,15 @@ This function runs in a similar way to the filtering on the Borough page. Howeve
 ## Potential Future Features
 
 - To implement comments to each fitness class. Users could comment on the class if they attended it and give their opinion on it.
-- At the moment however many people can book onto a class. In reality, fitness classes have limit to how attendees. This would be great to implement to visually show users if a class was full if the max number was met and if a space were to open up, the class would be available to be booked again.  
-- At the moment the app focuses on booking classes which are in 24 hours. We would like to implement classes for the week. 
-- A user being able to delete their account
+- At the moment however many people can book onto a class. In reality, fitness classes have limit to how attendees. This would be great to implement to visually show users if a class was full, if the max number was met, and if a space was to open up, the class would be available to be booked again.  
+- At the moment, the app focuses on booking classes which are in 24 hours. We would like to implement classes for the week. 
+- A user being able to delete their account.
 - A chat feature where users could interact with an instructor if they wanted personal training. 
 
 ## Lessons Learned
 
 - The importance of designing your models and the fields correctly was a great lesson learnt. In development, by ensuring these are correct it will make accessing and making requests to the API. 
 
-- Importance of configuring Django early e.g. configuring Images. Implementing images was done very late on during the process and required a configuration to the backend. It would've been wiser to have investigated this earlier to ensure our project was set up correctly. 
+- Importance of configuring Django early, e.g. configuring Images. Implementing images was done very late on during the process and required a configuration to the backend. It would've been wiser to have investigated this earlier to ensure our project was set up correctly. 
 
-- Create a fixture files early on. Experimenting with data became incredibly difficult to keep track off whilst testing to ensure all the functionality pulled through into the frontend correctly. If a fixtures file was made earlier, we would've spent more time on creating functionality. 
+- The importance of creating a fixture file early on. Experimenting with data became incredibly difficult to keep track of, whilst testing to ensure all the functionality worked in the frontend correctly. If a fixtures file was made earlier, we would have spent more time focusing on creating the functionality. 
