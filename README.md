@@ -15,6 +15,8 @@ After lots of planning, we decided to create a fitness class booking app, where 
 
 Check out the app [here](https://fitbook-project.herokuapp.com/#/).
 
+**Please note:** Due to the Heroku deficiency, Heroku is unable to upload images in our Registration Form. When using the app on Heroku, you will be unable to upload a photo, however we have implemented a default image to be present when an image is not uploaded. On the other hand, we have proof this works locally, please see below in our ReadMe.
+
 ## Brief
 
 - Choose to work solo or in a team
@@ -448,7 +450,7 @@ The nature of this app was to primarily be used on **mobile apps** as users woul
 - The homepage was built with limited accessibility for users. In designing our backend, content would only be available to users who had created an account. The landing page therefore prompts users to either create an account or to login using buttons to redirect them to the appropriate page. 
  
 <div style='text-align:center'>
-<img src='https://i.imgur.com/M2JoNvj.png' height='500'>
+<img src='https://i.imgur.com/ZR6Pi6S.png' height='500'>
 </div>
 
 ## Registering 
