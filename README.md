@@ -21,7 +21,7 @@ Check out the app [here](https://fitbook-project.herokuapp.com/#/).
 
 - Choose to work solo or in a team
 - **Build a full-stack application** by making a backend and front-end
-- **Use a Python Django API** using Django REST Framework to serve your data from a Postgres database
+- **Use a Python Django API** using Django REST Framework to serve the data from a Postgres database
 - **Consume the API with a separate front-end** built with React
 - **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
 - **Be deployed online** so it's publicly accessible
@@ -57,9 +57,9 @@ At this stage, we also decided the fields each of our models have within them, a
 <img src='https://i.imgur.com/9G9yg80.png'>
 
 
-Having planned our project, we could move on to begin creation. Our first step was to create a Django project containing our two apps. The project contains its own individual set of URLS which we would use to distinguish the API endpoints to retrieve any data in the frontend. The project has its own settings where we configured the apps, middleware, databases, our custom made user model, and authentications for the apps to use. 
+Having planned our project, we could move on to begin creation. Our first step was to create a Django project containing our two apps. The project contains its own individual set of URLs which we would use to distinguish the API endpoints to retrieve any data in the frontend. The project has its own settings where we configured the apps, middleware, databases, our custom made user model, and authentications for the apps to use. 
 
-Django comes with an in-built CMS whereby an administrative user can directly add, update and delete database records. We used Django REST framework to build the API as it has powerful functionality but allows for customisation all the way down. 
+Django comes with an in-built CMS whereby an administrative user can directly add, update and delete database records. We used Django REST framework to build the API, as it has powerful functionality but allows for customisation all the way down. 
 
 However, in order to access Django’s CMS, a superuser needed to be created aswell as our apps. For each app created, a URL, Model, and Views Python files are automatically created. These newly created apps needed to be included into the main project’s installed apps section to track changes. 
 
@@ -74,7 +74,7 @@ Having set up the project, we could look forward to building our two apps. The f
 
 For our fitness app, a total of five tables were created in the database, as shown in our ERD above.
 
-- Some models were created simply to provide variety in our app i.e. Our Instructor table held a total of 10 instructors, which we used in the fitnessClass model as a one-to-one relationship to indicate one instructor per class. A similar approach was also taken for our Gym model:
+- Some models were created simply to provide variety in our app, i.e. Our Instructor table held a total of 10 instructors, which we used in the fitnessClass model as a one-to-one relationship to indicate one instructor per class. A similar approach was also taken for our Gym model:
 
 <table>
 <tr>
@@ -267,7 +267,7 @@ class UserSerializer(serializers.ModelSerializer):
         }
 ```
 
-We also needed to specify the fitness field as being required as false. This is because the fitness field is not inputted into the custom user model upon registeration and would automatically raise the data as invalid.
+We also needed to specify the fitness field as being required as false. This is because the fitness field is not input into the custom user model upon registeration and would automatically raise the data as invalid.
 
 ## Views
 
@@ -275,9 +275,9 @@ Now being able to store and access data that is viewable, we were now able to lo
 
 ### 1. FITNESS
 
-At this point, we had to decide what requests users could make. Due to the nature of the app, it was clear users would be able to make GET requests to all of the endpoints, but would be limited to which tables they would be able to delete or create with. For this reason, we only chose to use class-based views in our fitness app so we could determine the delete and create endpoints for the users. 
+At this point, we had to decide what requests users could make. Due to the nature of the app, it was clear users would be able to make GET requests to all of the endpoints, but would be limited to which tables they would be able to delete or create with. For this reason, we only chose to use class-based views in our fitness app, so we could determine the delete and create endpoints for the users. 
 
-One area we did need to implement in this app is permissions. In order to access most of the information on the app, they needed to be a registered user. Django REST framework already gives us access to some powerful permissions, which can be added to any view by passing them as a list or tuple to a permission_classes property. However, we also created another custom permission setting. 
+One area we did need to implement in this app was permissions. In order to access most of the information on the app, they needed to be a registered user. Django REST framework already gives us access to some powerful permissions, which can be added to any view by passing them as a list or tuple to a permission_classes property. However, we also created another custom permission setting. 
 
 ```js
 class IsOwnerOrReadOnly(BasePermission):
@@ -287,9 +287,9 @@ class IsOwnerOrReadOnly(BasePermission):
     
     return request.user == obj.user
 ```
-- `isOwnerOrReadOnly` overrides the `BasePermission`. What this does is allow users read-only access to the endpoint, however even if they are authenticated, full CRUD functionality is only available to a superuser through the admin panel. 
+- `isOwnerOrReadOnly` overrides the `BasePermission`. What this does is allow users read-only access to the endpoint; however, even if they are authenticated, full CRUD functionality is only available to a superuser through the admin panel. 
 
-- This permission was used only for the fitnessClass and fitnessClassDetailView endpoints as this would only b accessible for a superuser to add more classes to the database. However all users have a GET endpoint to view the classes. 
+- This permission was used only for the fitnessClass and fitnessClassDetailView endpoints, as this would only be accessible for a superuser to add more classes to the database. However all users have a GET endpoint to view the classes. 
 
 ```js
 class AllFitnessClassView(APIView):
@@ -374,7 +374,7 @@ class BookedClassDetailView(APIView):
             token = jwt.encode({'sub': user.id}, settings.SECRET_KEY, algorithm='HS256')
             return Response({'token': token, 'message': f'Welcome back {user.username}!'})
     ```
-    - Once users have successfully registered, they will be able to login and have access to the views in the fitness app. However, this endpoint also decifiers if the user has already registered using the `get_user` function by checking if the email address requested is within the database. If this is passed, the POST request will also run the `check_password` function provided by Django’s default user authentication. If this is all passed, the user is given a JSONWebToken which is stored into the localStorage through the front-end and passes the `isAuthenticated` permission. 
+    - Once users have successfully registered, they will be able to login and have access to the views in the fitness app. However, this endpoint also deciphers if the user has already registered using the `get_user` function by checking if the email address requested is within the database. If this is passed, the POST request will also run the `check_password` function provided by Django’s default user authentication. If this is all passed, the user is given a JSONWebToken which is stored into the localStorage through the front-end and passes the `isAuthenticated` permission. 
 
 
 3. <h4 style='text-decoration: underline'> Profile View </h4>
@@ -390,9 +390,9 @@ class BookedClassDetailView(APIView):
 
     - All registered users are given their own profile, where all their booked classes would be stored. This is the only endpoint whereby permissions have been enabled and has a single GET endpoint to get the user made the request. This utilises the PopulateUserSerialiser to pull all the data through if any classes have been booked by the user.  
 
-## URLS 
+## URLs 
 
-Finally, now we are able to view and make the desired requests per endpoint, the URLS can be written per app. 
+Finally, now we are able to view and make the desired requests per endpoint, the URL can be written per app. 
 
 In our project we wrote the following urls in order to access per app: 
 
@@ -420,7 +420,7 @@ In our project we wrote the following urls in order to access per app:
     ]
     ```
 
-  - To access any of the above URLS, users would use `/api/fitness/URL` and the appropriate view would render.
+  - To access any of the above URLs, users would use `/api/fitness/URL` and the appropriate view would render.
 
 2. JWT_AUTH
 
@@ -432,7 +432,7 @@ In our project we wrote the following urls in order to access per app:
         path('api/', include('jwt_auth.urls'))
     ]
     ```
-  - To access any of the above URLS, users would use `/api/URL` and the appropriate view would render.
+  - To access any of the above URLs, users would use `/api/URL` and the appropriate view would render.
 
 # Frontend
 
@@ -519,7 +519,7 @@ Displaying error messages to users on the register and login components was anot
 
   ## Profile 
 
-  For every user who created an account, they would also be given their own profile page. From there they were able to access all functionalities of the app including booking and deleting classes. 
+  For every user who created an account, they would also be given their own profile page. From there, they were able to access all functionalities of the app including booking and deleting classes. 
 
 As mentioned before, users were given the opportunity to upload an image from their computer into the database. This photo would be displayed on this page. 
 
@@ -528,7 +528,7 @@ However, it wasn’t required for users to upload an image if they chose not for
 ```js 
 <img src={profile.image === null ? 'https://static.thenounproject.com/png/629576-200.png' : `http://localhost:8000${profile.image}`} />
 ```
-As mentioned, this was successful in the development stages of the project, however Heroku does not allow image uploads. 
+As mentioned, this was successful in the development stages of the project; however, Heroku does not allow image uploads. 
 
 The profile also contained another `ternary operator` to display if the user had booked any classes. By deciding to put a button in place to browse through boroughs, users are immediately prompted and this fills a blank space on the page. 
 
@@ -665,14 +665,14 @@ This function runs in a similar way to the filtering on the Borough page. Howeve
 ## Potential Future Features
 
 - To implement comments to each fitness class. Users could comment on the class if they attended it and give their opinion on it.
-- At the moment however many people can book onto a class. In reality, fitness classes have limit to how attendees. This would be great to implement to visually show users if a class was full, if the max number was met, and if a space was to open up, the class would be available to be booked again.  
+- At the moment, however many people can book onto a class. In reality, fitness classes have limit to how attendees. This would be great to implement to visually show users if a class was full, if the max number was met, and if a space was to open up, the class would be available to be booked again.  
 - At the moment, the app focuses on booking classes which are in 24 hours. We would like to implement classes for the week. 
 - A user being able to delete their account.
 - A chat feature where users could interact with an instructor if they wanted personal training. 
 
 ## Lessons Learned
 
-- The importance of designing your models and the fields correctly was a great lesson learnt. In development, by ensuring these are correct it will make accessing and making requests to the API. 
+- The importance of designing your models and the fields correctly was a great lesson learnt. In development, by ensuring these are correct, it will make accessing and making requests to the API. 
 
 - Importance of configuring Django early, e.g. configuring Images. Implementing images was done very late on during the process and required a configuration to the backend. It would've been wiser to have investigated this earlier to ensure our project was set up correctly. 
 
