@@ -31,7 +31,6 @@ class FitnessClass(models.Model):
   instructor = models.ForeignKey(Instructor, related_name='fitness', on_delete=models.CASCADE)
   description = models.CharField(max_length=1000)
   time_of_class = models.CharField(max_length=200)
-  image = models.CharField(max_length=1000)
   comment = models.ManyToManyField(Comment, related_name='fitness', blank=True)
   # user = models.ForeignKey(User, related_name='fitness', on_delete=models.CASCADE)
 
