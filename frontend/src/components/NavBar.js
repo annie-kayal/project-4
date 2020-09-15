@@ -16,7 +16,7 @@ const NavBar = (props) => {
     <div className="navbar-item">
       <Link to="/borough">Explore</Link>
     </div>
-    <div className="navbar-item">
+    <div className="navbar-item profile-link">
       <Link to="/profile">
         <img src='https://i.imgur.com/50EzKYk.png' />
       </Link>

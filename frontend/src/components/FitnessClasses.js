@@ -17,7 +17,7 @@ const FitnessClasses = (props) => {
       .then(resp => {
         setBorough(resp.data)
         const unsortedData = resp.data.fitnessclass
-        const sortedData = unsortedData.sort((a,b) => {
+        const sortedData = unsortedData.sort((a, b) => {
           return parseInt(a.time_of_class.split(':').join('')) - parseInt(b.time_of_class.split(':').join(''))
         })
         setAllClasses(sortedData)
@@ -39,7 +39,6 @@ const FitnessClasses = (props) => {
 
 
 
-
   function previousPage() {
     props.history.goBack()
   }
@@ -49,14 +48,16 @@ const FitnessClasses = (props) => {
     <section className="section classes-section">
       <div className="header">
         <button onClick={() => previousPage()}>
-          <i className="fas fa-angle-left is-medium fas fa-lg"></i>
+          Back To Boroughs
         </button>
-        <h2 className="date">Date: {moment().format('MMMM Do')}</h2>
       </div>
       <div id='buffer'></div>
       <div className="container">
         <div className="title">
-          <h2 className="subtitle">{borough.name}</h2>
+          <div className="subtitle">
+            <h2>{borough.name}</h2>
+            <h2>{moment().format('MMMM Do')}</h2>
+          </div>
           <div className="select">
             <select onChange={(e) => filterClasses(e)}>
               <option value="All">All</option>
@@ -70,14 +71,13 @@ const FitnessClasses = (props) => {
             </select>
           </div>
         </div>
-        <div>
+        <div className='classes-container'>
           {filteredClass.map(elem => {
             return <SingleClassCard className='card class-card' props={props} key={elem.id} {...elem} />
           })}
         </div>
         <div id="buffer"></div>
       </div>
-      <div className="navbar-test"></div>
     </section>
   </>
 }

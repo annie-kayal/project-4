@@ -13,6 +13,7 @@ const SingleFitnessClass = (props) => {
     const id = props.match.params.id
     axios.get(`/api/fitness/${id}`)
       .then(resp => {
+        console.log(resp.data)
         setFitnessclass(resp.data)
       })
   }, [])
@@ -41,7 +42,7 @@ const SingleFitnessClass = (props) => {
   const gymname = fitnessclass.gym ? fitnessclass.gym.name : null
   const gymfacilities = fitnessclass.gym ? fitnessclass.gym.facilities : null
   const instructor = fitnessclass.instructor ? fitnessclass.instructor.name : null
-  return <>
+  return (
     <section className="section fitnessclass-section">
       <button onClick={() => previousPage()} >X</button>
       <div className="container">
@@ -69,7 +70,7 @@ const SingleFitnessClass = (props) => {
       </div>
       <NavBar />
     </section>
-  </>
+  )
 }
 
 export default SingleFitnessClass

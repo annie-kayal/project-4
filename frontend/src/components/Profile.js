@@ -42,7 +42,6 @@ const Profile = () => {
 
             <div className='noClassesBooked'>
               <p> No classes booked for today </p>
-              <Link to='/borough'><button className="button">Browse Classes</button></Link>
             </div>
 
             :
@@ -57,7 +56,7 @@ const Profile = () => {
                 <button onClick={(e) => deleteFitnessClass(e)} className="button">Cancel</button>
               </div>
             })}
-
+          <Link to='/borough'><button className="button">Find Classes</button></Link>
         </div>
       </div>
     </section>

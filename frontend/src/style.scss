@@ -6,23 +6,27 @@ body {
 }
 
 #root {
-  background-color: whitesmoke;
+  // background-color: whitesmoke;
   height: 100vh;
+  width: 100vw;
   font-family: 'Cantarell', sans-serif;
 }
 
-
-// HOMEPAGE 
 #background-image {
+  background-image: url('https://images.squarespace-cdn.com/content/v1/52540926e4b0d49865bee20d/1525949988855-GMKRG7DQ2UKZYSYRBQ1M/ke17ZwdGBToddI8pDm48kLR2rgEg1jPu1GtjV4K1vZ97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0scl71iiVnMuLeEyTFSXT3qwhEKW1IfUKL5GUNLdDa9MjuPXcXiDenG_NSvE-2lGCg/HAN_0062.jpg');
+  background-size: cover;
   position: absolute;
   object-fit: fill;
   min-height: 100vh;
   height: 100vh;
   width: 100vw;
   filter: blur(2px) brightness(82%);
+  margin: 0;
 }
 
-.hero-body {
+
+// HOMEPAGE 
+.hero {
   padding: 0px !important;
   .container {
     height: 600px;
@@ -55,11 +59,12 @@ body {
       }
     }
     .description {
+      display: block;
       color: black;
       background-color: rgba(245, 245, 245, 0.527);
       width: 100%;
-      font-size: 20px;
-      padding: 5px 0;
+      font-size: 1.2em;
+      padding: 1em;
       .subtitle {
         // background-color: rosybrown;
         display: flex;
@@ -81,20 +86,33 @@ body {
 
 
 // REGISTER PAGE 
-
-.register-section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.modal-background {
+  animation: modalAppear ease-in forwards 0.5s;
+}
+  .close {
+    display: flex;
+    align-self: flex-end;
+  }
+    .modal-content {
+      border-radius: 3%;
+      height: 70%;
+      width: 80%;
+      background-color: whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1em;
+      animation: modalAppear ease-in forwards 0.5s;
+    }
     img {
-      height: 50px;
-      margin: 10px;
+      height: 10%;
+      margin-bottom: 1em;
     }
     .form {
-      height: 60%;
-      width: 100%;
+      // background-color: firebrick;
+      height: 110%;
+      width: 90%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -103,6 +121,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         p {
           font-family: 'Cantarell', sans-serif;
           font-size: 13px;
@@ -111,9 +130,7 @@ body {
       }
       input {
         font-family: 'Cantarell', sans-serif;
-        &:focus {
-          border: 1px solid rebeccapurple;
-        }
+        width: 100%;
       }
       button {
         font-family: 'Cantarell', sans-serif;
@@ -124,7 +141,7 @@ body {
         font-family: 'Cantarell', sans-serif;
         display: flex;
         justify-content: center;
-        width: 250px;
+        width: 100%;
         padding: 10px;
         border-radius: 50px;
         background-color: white;
@@ -140,55 +157,25 @@ body {
           color: rebeccapurple;
         }
       }
-    }
+
 
 
 // LOGIN PAGE 
-
-
-.login-section {
-  height: 100vh;
+.login-content {
+  height: 54%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-    img {
-      height: 50px;
-      margin: 10px;
-    }
-    .form {
-      height: 40%;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      input {
-        font-family: 'Cantarell', sans-serif;
-        &:focus {
-          border: 1px solid rebeccapurple;
-        }
-      }
-      .control {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        p {
-          font-family: 'Cantarell', sans-serif;
-          font-size: 13px;
-          color: red;
-        }
-      }
-      button {
-        font-family: 'Cantarell', sans-serif;
-        background-color: rebeccapurple;
-        color: whitesmoke;
-      }
-    }
+  img {
+    height: 15%;
+  }
+  .form {
+    height: 150%;
+  }
+}
     .notRegistered {
       font-size: 15px;
       text-align: center;
-      height: 65px;
+      // height: 65px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -198,8 +185,6 @@ body {
         color: rebeccapurple;
       }
     }
-
-}
 
 // FITNESS CLASSES.JS 
 #buffer {
@@ -212,46 +197,50 @@ body {
   padding: 0px;
   // display: flex;
   .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
     position: fixed;
-    width: 100%;
-    height: 8%;
     z-index: 10;
-    background-color: whitesmoke;
-    padding-bottom: 5px;
     button {
-      margin: 0 25px;
+      background-color: whitesmoke;
+      font-size: 0.9em;
+      margin-left: 1em;
+      margin-top: 1em;
+      padding: 0.5em;
       background-color: #fcfcfc;
-      height: 25px;
-      border-radius: 20px;
-      border: 2px solid rebeccapurple;
-      background-color: transparent;
+      border: 0.2em solid rebeccapurple;
+      border-radius: 1em;
+      font-family: 'Cantarell', sans-serif;
+      &:hover {
+        color: rebeccapurple;
+
+      }
     }
     h2 {
-      margin: 0 25px;
+      margin-right: 1em;
+      margin-top: 1em;
       padding: 0;
     }
   }
   .container {
     display: flex;
     flex-direction: column;
-    width: 90%;
 
   }
   .title {
     display: flex;
-    width: 95%;
-    padding-top: 20px;
+    width: 90%;
     align-self: center;
     justify-content: space-between;
+    margin: 0;
   .subtitle {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
     font-family: 'Cantarell', sans-serif;
     font-size: 18px;
     font-weight: 700;
-    width: 65%;
+    width: 70%;
     padding-bottom: 0px;
+    margin: 0;
 
   }
   .select {
@@ -262,8 +251,14 @@ body {
     }
   }
 }
+.classes-container {
+  // background-color: yellow;
+  padding: 1em;
+  width: 100%;
+}
   .class-card {
     display: flex;
+    
     margin-bottom: 10px;
     justify-content: space-between;
     border-top: 2px solid rebeccapurple;
@@ -342,6 +337,11 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      img {
+        height: 100px;
+        width: 100px;
+        margin: 0;
+      }
       h2 {
         font-weight: 700;
       }
@@ -378,7 +378,7 @@ body {
     flex-direction: column;
     border-radius: 22px;
       h2 {
-        font-size: 18px;
+        font-size: 1.2em;
         display: flex;
         margin-bottom: 10px;
       }
@@ -389,15 +389,16 @@ body {
         justify-content: space-evenly;
         align-items: center;
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: 1.5em;
         border-bottom: 2px solid rebeccapurple;
-        img {
-          height: 140px;
-          width: 100px;
-          display: flex;
-          border-radius: 50%;
-          padding-bottom: 10px;
-        }
+          img {
+            padding: 0 0.8em;
+            height: 50%;
+            width: 38%;
+            display: flex;
+            padding-bottom: 10px;
+            margin: 0;
+          }
       }
       .booked-classes {
         margin: 0 5px;
@@ -423,21 +424,33 @@ body {
           }
         }
         .card {
+          width: 100%;
           background-color: snow;
+          border-radius: 1em;
           margin-bottom: 5px;
           border-bottom: 2px solid grey;
           display: flex;
           justify-content: space-between;
-          align-items: center;
+          padding: 0 1em;
           h3 {
             font-weight: 700;
           }
+          button {
+            width: 25%;
+          }
+        }
+        a {
+          width: 75%;
         }
         .button {
+          display: flex;
+          align-self: center;
+          width: 100%;
           background-color: rebeccapurple;
           color: whitesmoke;
-          margin-right: 10px;
           font-weight: 700;
+          margin-right: 1em;
+          margin-top: 1em;
         }
       }
   }
@@ -447,6 +460,7 @@ body {
 
 .borough-section {
   background-color: whitesmoke;
+  height: 100%;
   .borough-title {
     font-weight: normal;
     display: flex;
@@ -459,11 +473,10 @@ body {
 
 // SEARCH FORM
 .SearchForm {
-  padding-bottom: 20px;
+  padding-bottom: 0.1em;
       input[type=text] {
       width: 130px;
       transition: width 0.4s ease-in-out;
-      border: 1px solid rebeccapurple;
       font-size: 15px;
       &:focus {
         width: 100%
@@ -474,16 +487,16 @@ body {
 
 
 //  BOROUGH CARD 
-.column {
-  padding: 18px;
+.columns {
+  padding: 1em 0.5em;
   .borough-card {
-    border-radius: 20px;
+    box-shadow: 1em 0em 1em #dbdbdb;
     background-color:  #fcfcfc;
     &:hover {
       transform : translateY(-15px);
     }
     .borough-image {
-      border-radius: 0px 0px 20px 20px;
+      // border-radius: 0px 0px 20px 20px;
       opacity: 0.9;
     }
     #Lambeth {
@@ -498,8 +511,8 @@ body {
     .borough-subtitle {
       display: flex;
       justify-content: center;
-      // color:rebeccapurple;
-      font-size: 12px;
+      font-size: 0.8em;
+      text-align: center;
       font-weight: bold;
     }
   }
@@ -564,17 +577,158 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 5%;
   background-color: rgba($color:whitesmoke, $alpha: 1);
+  .navbar-item {
+    // background-color: firebrick;
+    padding: 0.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-link {
+    // background-color: firebrick;
+    height: 100px;
+    width: 100px;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    a {
+      // background-color: yellow;
+      height: 100%;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        max-height: 2rem;
+        height: 110%;
+        margin: 0;
+      }
+    }
+  }
   a{
     color: rebeccapurple;
-    font-size: 20px;
+    font-size: 1.3em;
   }
 }
 
 
 
-@media only screen and (min-width: 683px) {
+@media only screen and (min-width: 600px) {
+  #background-image {
+    background-image: url('https://images.squarespace-cdn.com/content/v1/5a01f131b1ffb664756496a7/1571680774825-JH0ZPHPYZLBLTUCWO84O/ke17ZwdGBToddI8pDm48kJRqFJ19D4P4EwsC9z3fiewUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dkV64dCjSK7Zaaf7dwPYPO_gHf_vjqrS5WJoq1nmwotrP7cJNZlDXbgJNE9ef52e8w/PHOTO-2019-04-17-15-06-30.jpg?format=2500w');
+    object-fit: cover;
+    background-size: cover;
+  }
+  .hero, .is-fullheight {
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    .hero-body {
+      align-items: flex-start !important;
+      padding: 0;
+      // background-color: yellow;
+      .container {
+        margin: 0;
+        min-width: 100%;
+        height: 9vh;
+        // background-color: red;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        .title {
+          display: flex;
+          justify-content: center;
+          margin-left: 0.2em;
+          margin-top: 0.2em;
+          margin-bottom: 0;
+          height: 90%;
+          width: 100px;
+          h1 {
+            font-size: 0.23em;
+          }
+          img {
+            height: 40%;
+            width: 30%;
+            margin: 0;
+          }
+        }
+        .description {
+          p {
+            display: none;
+          }
+          background-color: transparent;
+          padding: 0;
+          width: 30%;
+          height: 100%;
+          .subtitle {
+            // background-color: firebrick;
+            padding-top: 0;
+            align-items: flex-end;
+            height: 110%;
+            flex-direction: column;
+            justify-content: space-evenly;
+            margin-right: 0.1em;
+            button {
+              background-color: rgba(245, 245, 245, 0.527);
+              &:hover, &:focus {
+                background-color: rebeccapurple;
+                color: whitesmoke;
+                border: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .description-desktop {
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      background-color:rgba(245, 245, 245, 0.56);
+      position: absolute;
+      left: 50px;
+      padding: 1.5em;
+      font-size: 1.2em;
+      font-weight: bold;
+      h1 {
+        color: rebeccapurple;
+        font-size: 3em;
+        margin: 5%;
+        font-family: 'Cantarell', sans-serif;
+        letter-spacing: 4px;
+      }
+    }
+  }
+  
+  // All Borough Page
+
+  .borough-section {
+    .SearchForm {
+      .container {
+        .field {
+          .control {
+            input[type=text] {
+            width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // All Classes
+
+  .classes-section {
+    .header {
+      width: 90%;
+      // background-color: green;
+      left: 5%;
+    }
+  }
   .form {
     input {
       width: 50vw;
@@ -583,11 +737,48 @@ body {
   #Lambeth {
     transform: translateY(0px) !important;
   }
-
 }
 
 
 
+.modal {
+  .image-input {
+    width: 75%;
+  }
+  .login-content {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+
+@media only screen and (min-width: 1000px) {
+        .description {
+          .subtitle {
+            // background-color: yellow;
+            flex-direction: row !important;
+            align-items: center !important;
+          }
+}
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalDisappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 
 
