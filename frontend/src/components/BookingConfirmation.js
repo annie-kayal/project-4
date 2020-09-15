@@ -22,7 +22,6 @@ const BookingConfirmation = () => {
   const lastBooktime = lastBooked ? lastBooked.time_of_class : null
   const lastBookedgym = lastBooked ? lastBooked.gym : null  
 
-
   return <>
     <section className="section confirmation-section">
       <div className="container has-text-centered">

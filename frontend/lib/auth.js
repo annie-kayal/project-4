@@ -27,7 +27,6 @@ function getToken() {
 }
 
 function logOut() {
-  console.log('Hello World')
   localStorage.removeItem('token')
 }
 

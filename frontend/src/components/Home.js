@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 
 const Home = () => {
-
-
   return (
     <section className="hero is-light is-fullheight homepage">
       <img id='background-image' />

@@ -24,9 +24,6 @@ class Borough extends React.Component {
           filteredBoroughs: response.data
         })
       })
-      .then(() => {
-        // console.log(this.state.boroughs)
-      })
       .catch(error => console.error(error))
   }
 
@@ -49,14 +46,12 @@ class Borough extends React.Component {
       <section className="section borough-section">
         <h1 className="title borough-title">Select Borough</h1>
         <SearchForm query={this.state.query} onChange={() => this.filterBoroughs(event)} />
-        {/* <div className="container is-mobile"> */}
         <div className="columns is-mobile is-multiline">
           {this.state.filteredBoroughs.map((borough) => {
             return <BoroughCard className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile' props={this.props} id={borough.id} key={borough.id} {...borough} />
           }
           )}
         </div>
-        {/* </div> */}
       </section>
     </>
   }

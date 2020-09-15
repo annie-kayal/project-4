@@ -186,7 +186,7 @@
     "activity_type": "HIIT",
     "instructor": 7,
     "description": "Step into a BODYCOMBAT workout and you\u2019ll punch and kick your way to fitness, burning up to 740 calories along the way. This high-energy martial-arts inspired workout is totally non-contact and there are no complex moves to master.",
-    "time_of_class": "17:00",
+    "time_of_class": "07:00",
     "comment": []
   }
 },
@@ -199,7 +199,7 @@
     "activity_type": "HIIT",
     "instructor": 3,
     "description": "An excellent workout designed to raise your heart rate, improve your fitness and boost your energy levels",
-    "time_of_class": "20:00",
+    "time_of_class": "08:00",
     "comment": []
   }
 },
@@ -212,7 +212,7 @@
     "activity_type": "Boxing",
     "instructor": 4,
     "description": "The class is predominantly bodyweight exercises blended with boxing drills and techniques. All of our coaches are current or former boxers with years of boxing knowledge and experience",
-    "time_of_class": "19:00",
+    "time_of_class": "17:30",
     "comment": []
   }
 },
@@ -225,7 +225,7 @@
     "activity_type": "Pilates",
     "instructor": 6,
     "description": "Pilates improves flexibility, builds strength and develops control and endurance in the entire body. Our mat based classes emphasise alignment, core development and will improve your coordination and balance. Our instructors use both classical and contemporary approaches to create physically challenging classes which are open to all levels.",
-    "time_of_class": "07:00",
+    "time_of_class": "18:00",
     "comment": []
   }
 },
@@ -251,7 +251,7 @@
     "activity_type": "Barre",
     "instructor": 9,
     "description": "Pure Barre is an intelligent fusion of Pilates, classical ballet exercises and yoga stretches. No equipment is used during these sessions.",
-    "time_of_class": "19:30",
+    "time_of_class": "19:00",
     "comment": []
   }
 },
@@ -264,7 +264,7 @@
     "activity_type": "HIIT",
     "instructor": 8,
     "description": "This high energy, intense conditioning session will be made up of a combination of body weight exercises. This true full body workout will push you to the limits but enjoy the benefits.",
-    "time_of_class": "06:00",
+    "time_of_class": "19:30",
     "comment": []
   }
 },
@@ -285,7 +285,7 @@
   "model": "fitness.borough",
   "pk": 1,
   "fields": {
-    "name": "Hammersmith",
+    "name": "Hammersmith & Fulham",
     "image": "https://media.timeout.com/images/105616695/image.jpg",
     "fitnessclass": [
       8,
