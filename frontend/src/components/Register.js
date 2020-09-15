@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 
 import auth from '../../lib/auth'
 
-const Register = ( props ) => {
+const Register = (props) => {
   const [registerData, setRegisterData] = useState({ image: '' })
   const [errors, setErrors] = useState({})
+  const body = new FormData()
+  const modalBackground = useRef()
+  const modalContent = useRef()
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -15,7 +18,6 @@ const Register = ( props ) => {
     setRegisterData(data)
   }
 
-  const body = new FormData()
 
 
   function handleSubmit(event) {
@@ -44,13 +46,19 @@ const Register = ( props ) => {
       })
   }
 
+  function handleClose() {
+    modalBackground.current.style.animation = 'modalDisappear ease-in forwards 0.5s'
+    modalContent.current.style.animation = 'modalDisappear ease-in forwards 0.5s'
+    props.history.push('/')
+  }
+
 
 
   return <section className="modal is-active">
-    <img id='background-image'/>
-    <div className="modal-background"></div>
-    <div className="modal-content">
-      <button onClick={() => props.history.goBack()} className='close button is-small'>X</button>
+    <img id='background-image' />
+    <div ref={modalBackground} className="modal-background"></div>
+    <div ref={modalContent} className="modal-content">
+      <button onClick={() => handleClose()} className='close button is-small'>X</button>
       <img src='https://i.imgur.com/50EzKYk.png' />
       <form
         className="form"

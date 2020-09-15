@@ -743,7 +743,11 @@ body {
 
 .modal {
   .image-input {
-    width: 75%;
+    width: 100%;
+  }
+  .modal-content {
+    height: 800px;
+    width: 400px;
   }
   .login-content {
     height: 400px;
