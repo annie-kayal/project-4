@@ -43,33 +43,39 @@ const SingleFitnessClass = (props) => {
   const gymfacilities = fitnessclass.gym ? fitnessclass.gym.facilities : null
   const instructor = fitnessclass.instructor ? fitnessclass.instructor.name : null
   return (
-    <section className="section fitnessclass-section">
-      <button onClick={() => previousPage()} >X</button>
-      <div className="container">
+
+    <section className="fitnessclass-section">
+      <div className="content-container">
         <div className="subtitle">
+          <button onClick={() => previousPage()} >Close</button>
           <div className="title">
             <h2>{fitnessclass.name}</h2>
             <h4 id='class-time'>{fitnessclass.time_of_class}</h4>
           </div>
           <h4>{fitnessclass.activity_type}</h4>
         </div>
-        <div className="singlefitness-container">
-          <h2> Location :</h2>
-          <h5> {gymname}</h5>
+        <div className="main-class-content">
+          <p className='class-description'>{fitnessclass.description}</p>
+          <div className="class-features">
+            <div className="singlefitness-container">
+              <h2> Location:</h2>
+              <h5> {gymname}</h5>
+            </div>
+            <div className="singlefitness-container">
+              <h2>Gym Facilites:</h2>
+              <h5> {gymfacilities}</h5>
+            </div>
+            <div className="singlefitness-container">
+              <h2>Instructor:</h2>
+              <h5 className="instructor"> {instructor}</h5>
+            </div>
+          </div>
         </div>
-        <div className="singlefitness-container">
-          <h2>Gym Facilites :</h2>
-          <h5> {gymfacilities}</h5>
-        </div>
-        <div className="singlefitness-container">
-          <h2>Instructor :</h2>
-          <h5 className="instructor"> {instructor}</h5>
-        </div>
-        <p className='card'>{fitnessclass.description}</p>
         <button onClick={(e) => handleBooking(e)} className='button'>Book Now</button>
+        <NavBar />
       </div>
-      <NavBar />
     </section>
+  
   )
 }
 

@@ -31,6 +31,7 @@ const SingleClassCard = ( { props, id, name, time_of_class, gym, instructor, des
         <div className="elem">
           <h1>{name}</h1>
           <h2>{time_of_class}</h2>
+          <p>{instructor.name}</p>
         </div>
       </div>
       <div className="buttons are-small">
