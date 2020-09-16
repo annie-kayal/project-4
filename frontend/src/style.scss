@@ -797,6 +797,26 @@ body {
       width: 400px;
     }
   }
+  .profile-section {
+    .container {
+      .booked-classes {
+        .card {
+          .card-content {
+            .class-details{
+              .class-description {
+                font-size: 0.9em;
+              }
+            }
+            aside {
+              button {
+                width: 25% !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -822,11 +842,17 @@ body {
             }
           }
           .booked-classes {
+            .card {
+              width: 90%;
+              .card-content {
+                padding: 2rem 2rem 2rem 0;
+              }
+            }
             a {
               display: flex;
               justify-content: center;
               .button {
-              width: auto;
+              width: 25%;
               }
             }
           }
@@ -842,6 +868,9 @@ body {
             flex-direction: row !important;
             align-items: center !important;
           }
+}
+.profile-section {
+
 }
 }
 
