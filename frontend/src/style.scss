@@ -342,9 +342,8 @@ body {
         font-size: 15px;
       }
       button {
-        width: 15%;
         display: flex;
-        align-self: flex-end;
+        align-self: flex-start;
         justify-content: center;
       }
       .title {
@@ -689,7 +688,7 @@ body {
         .title {
           display: flex;
           justify-content: center;
-          margin-left: 0.2em;
+          margin-left: 50px;
           margin-top: 0.2em;
           margin-bottom: 0;
           height: 77px;
@@ -822,6 +821,7 @@ body {
 
 
 @media only screen and (min-width: 750px) {
+
       // Profile Section
 
       .profile-section {

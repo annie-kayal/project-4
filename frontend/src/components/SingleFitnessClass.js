@@ -47,7 +47,7 @@ const SingleFitnessClass = (props) => {
     <section className="fitnessclass-section">
       <div className="content-container">
         <div className="subtitle">
-          <button onClick={() => previousPage()} >Close</button>
+          <button onClick={() => previousPage()} >Back to classes</button>
           <div className="title">
             <h2>{fitnessclass.name}</h2>
             <h4 id='class-time'>{fitnessclass.time_of_class}</h4>
